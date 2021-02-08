@@ -36,6 +36,11 @@
 
         </div>
         <p class="text-gray-400 text-xs italic mb-6">* Password must be at least 8 character.</p>
+        <div class="flex items-center mb-4">
+          <input type="checkbox" v-model="data.remember">
+          <p class="ml-3">Remember me</p>
+        </div>
+
         <button class="capitalize rounded bg-yellow-600 px-3 py-3 w-1/2 mx-auto text-white">Log in</button>
       </form>
     </div>
@@ -58,8 +63,9 @@ export default Vue.extend({
   data() {
     return {
       data: {
-        email: "",
-        password: "",
+        email: "shoaib@shoaib.com",
+        password: "shoaib123",
+        remember: false
       },
       errors: {}
     }
@@ -69,9 +75,11 @@ export default Vue.extend({
       try {
 
         await this.$auth.loginWith('laravelSanctum', {data: this.data})
-        await this.$router.back();
+        await this.$router.push('/');
+        this.$store.commit('alert/setAlert', {message: 'logged in', type: 'success'})
       } catch (e) {
         this.errors = e.response.data.errors
+        this.$store.commit('alert/setAlert', {message: e.response.data.message, type: 'danger'})
       }
 
     }

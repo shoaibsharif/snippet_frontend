@@ -17,10 +17,9 @@
             <li>
               <nuxt-link
                 class="text-lg text-gray-700 lg:px-4 lg:py-8"
-                :to="{ name: 'index' }"
+                :to="{ name: 'browse' }"
               >Browse
-              </nuxt-link
-              >
+              </nuxt-link>
             </li>
             <li>
               <nuxt-link class="text-lg text-gray-700 " :to="{ name: 'index' }"
@@ -33,7 +32,11 @@
           <ul class="items-center ml-auto text-right lg:h-24 lg:flex">
             <template v-if="$auth.loggedIn">
               <li class="text-lg text-gray-700 lg:px-4 lg:py-8">{{ $auth.user.name }}</li>
-              <li class="text-lg text-gray-700 lg:px-4 lg:py-8 cursor-pointer" @click.prevent="$auth.logout()">Logout
+              <li class="text-lg text-gray-700 lg:px-4 lg:py-8">
+                <nuxt-link to="/dashboard">Dashboard</nuxt-link>
+              </li>
+
+              <li class="text-lg text-gray-700 lg:px-4 lg:py-8 cursor-pointer" @click.prevent="logout">Logout
               </li>
             </template>
             <template v-if="!$auth.loggedIn">
@@ -44,11 +47,12 @@
                 <nuxt-link to="register">Register</nuxt-link>
               </li>
             </template>
-
+            <alert :message="$store.state.alert.message" :type="$store.state.alert.type"/>
           </ul>
         </div>
       </div>
     </nav>
+
     <Nuxt/>
   </div>
 </template>
@@ -62,8 +66,13 @@ export default Vue.extend({
       mobileNavOpen: false
     };
   },
-  methods: {}
+  methods: {
+    async logout() {
+      await this.$auth.logout();
+      this.$store.commit('alert/setAlert', {message: "logged out", type: 'success'})
+    }
+  }
 });
 </script>
 
-<style></style>
+

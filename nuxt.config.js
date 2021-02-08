@@ -12,10 +12,15 @@ export default {
     ],
     link: [
       {rel: "icon", type: "image/x-icon", href: "/favicon.ico"},
+      {rel: "preconnect", href: "https://fonts.gstatic.com"},
       {
         rel: "stylesheet",
         href:
           "https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap"
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
       }
     ]
   },
@@ -77,11 +82,12 @@ export default {
   axios: {
     credentials: true,
     baseURL: process.env.API_URL,
-
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ['vue-instantsearch', 'instantsearch.js/es'],
+  },
 
   server: {
     port: 3000,

@@ -11,6 +11,7 @@ export default Vue.extend({
       title: 'Home'
     }
   },
+
   middleware: ['auth'],
   data: () => ({
     world: "hello"

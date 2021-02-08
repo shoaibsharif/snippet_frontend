@@ -13,7 +13,8 @@ module.exports = {
 
     extend: {
       fontFamily: {
-        header: ["Rubik", "sans-serif"]
+        header: ["Rubik", "sans-serif"],
+        fira: ["Fira Code", "monospace"]
       },
       colors: {
         gray: colors.blueGray,
@@ -27,5 +28,7 @@ module.exports = {
   variants: {
     extend: {}
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/typography'),
+  ]
 };
