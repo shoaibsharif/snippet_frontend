@@ -1,23 +1,23 @@
 export const state = () => ({
-  message: '',
-  type: ''
-})
-
-const getters = {
-  snack(state) {
-    return state;
-  }
-}
+  message: "",
+  show: false,
+  type: "error"
+});
 
 export const mutations = {
-  setAlert(state, {message, type}) {
+  SHOW_ERROR(state, message) {
+    state.type = "error";
+    state.show = true;
     state.message = message;
-    state.type = type;
   },
-  clearAlert(state) {
-    state.message = ''
-    state.type = ''
+
+  SHOW_SUCCESS(state, message) {
+    state.type = "success";
+    state.show = true;
+    state.message = message;
+  },
+
+  CLOSE(state) {
+    state.show = false;
   }
-}
-
-
+};

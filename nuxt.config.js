@@ -1,4 +1,5 @@
 export default {
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: "%s | Code snippets",
@@ -59,7 +60,7 @@ export default {
     strategies: {
       laravelSanctum: {
         provider: "laravel/sanctum",
-        url: process.env.API_URL,
+        url: process.env.NUXT_ENV_API_URL,
         endpoints: {
           login: {
             url: "/api/auth/login"
@@ -75,23 +76,31 @@ export default {
         }
       }
     },
-    watchLoggedIn: true,
+    watchLoggedIn: true
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     credentials: true,
-    baseURL: process.env.API_URL,
+    baseURL: process.env.NUXT_ENV_API_URL
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ['vue-instantsearch', 'instantsearch.js/es'],
+    transpile: ["vue-instantsearch", "instantsearch.js/es"]
+  }
+  ,
+  privateRuntimeConfig: {
+    AlgoliaAppId: process.env.ALGOLIA_APP_ID,
+    AlgoliaSecretKey: process.env.ALGOLIA_API_KEY
   },
-
-  server: {
-    port: 3000,
-    host: "snippet.test"
+  router: {
+    parseQuery(queryString) {
+      return require('qs').parse(queryString);
+    },
+    stringifyQuery(object) {
+      var queryString = require('qs').stringify(object);
+      return queryString ? '?' + queryString : '';
+    },
   },
-
 };

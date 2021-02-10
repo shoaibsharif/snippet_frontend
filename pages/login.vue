@@ -13,7 +13,7 @@
               email
             </label>
             <input v-model="data.email" :class="{'border-red-500' : errors && errors.email && errors.email.length}"
-                   class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                   class="appearance-none focus:outline-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                    id="email" name="email" type="email" placeholder="m2@example.com">
             <p class="text-red-500 text-xs italic" v-if="errors && errors.email && errors.email.length">
               {{ errors.email && errors.email.join('') }}</p>
@@ -28,7 +28,7 @@
             </label>
             <input v-model="data.password"
                    :class="{'border-red-500' : errors && errors.password && errors.password.length}"
-                   class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
+                   class="appearance-none focus:outline-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
                    name="password" id="password" type="password" placeholder="type your password">
             <p class="text-red-500 text-xs italic" v-if="errors && errors.password && errors.password.length">
               {{ errors && errors.password && errors.password.join('') }}</p>
@@ -41,7 +41,7 @@
           <p class="ml-3">Remember me</p>
         </div>
 
-        <button class="capitalize rounded bg-yellow-600 px-3 py-3 w-1/2 mx-auto text-white">Log in</button>
+        <button class="capitalize rounded bg-yellow-600 px-3 py-3 w-1/6 mx-auto text-white">Log in</button>
       </form>
     </div>
   </div>
@@ -53,6 +53,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
+
   head() {
     return {
       title: 'Sign In'
@@ -76,10 +77,10 @@ export default Vue.extend({
 
         await this.$auth.loginWith('laravelSanctum', {data: this.data})
         await this.$router.push('/');
-        this.$store.commit('alert/setAlert', {message: 'logged in', type: 'success'})
+        this.$store.commit('alert/SHOW_SUCCESS', "Successfully logged in")
       } catch (e) {
         this.errors = e.response.data.errors
-        this.$store.commit('alert/setAlert', {message: e.response.data.message, type: 'danger'})
+        this.$store.commit("alert/SHOW_ERROR", e.response.data.message);
       }
 
     }

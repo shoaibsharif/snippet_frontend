@@ -1,5 +1,6 @@
 <template>
   <div>
+    <alert/>
     <nav class="flex items-center px-4 py-8 bg-white lg:py-0">
       <div class="flex flex-wrap items-center w-full conatiner lg:flex-nowrap">
         <nuxt-link class="mr-10" :to="{ name: 'index' }">
@@ -22,7 +23,7 @@
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link class="text-lg text-gray-700 " :to="{ name: 'index' }"
+              <nuxt-link class="text-lg text-gray-700 " :to="{ name: 'search' }"
               >Search
               </nuxt-link
               >
@@ -47,7 +48,7 @@
                 <nuxt-link to="register">Register</nuxt-link>
               </li>
             </template>
-            <alert :message="$store.state.alert.message" :type="$store.state.alert.type"/>
+
           </ul>
         </div>
       </div>
@@ -69,7 +70,7 @@ export default Vue.extend({
   methods: {
     async logout() {
       await this.$auth.logout();
-      this.$store.commit('alert/setAlert', {message: "logged out", type: 'success'})
+      this.$store.commit('alert/SHOW_SUCCESS', 'logged out')
     }
   }
 });

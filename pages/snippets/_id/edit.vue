@@ -109,43 +109,54 @@ export default Vue.extend({
       interval: null
     }
   },
+  beforeMount() {
+    if (!this.snippet.owner) {
+      this.$router.replace(`/snippets/${this.$route.params.id}`)
+    }
+  },
   mounted() {
-
-    if (!this.snippet.owner)
-      this.$router.back()
-    
+    this.$watch("currentStep", this.stepWatcher(), {deep: true})
   },
   watch: {
     'snippet.title': {
       handler: debounce(async function (title) {
-        await this.$axios.$patch(`/api/snippets/${this.$route.params.id}`, {title})
-        clearInterval(this.interval)
-        this.touchLastSaved();
+        try {
+
+          await this.$axios.$patch(`/api/snippets/${this.$route.params.id}`, {title})
+          clearInterval(this.interval)
+          this.touchLastSaved();
+        } catch (e) {
+          this.$store.commit("alert/SHOW_ERROR", e.response.data.message);
+        }
       }, 1000)
     }, 'snippet.is_public': {
       handler: debounce(async function (is_public) {
-        await this.$axios.$patch(`/api/snippets/${this.$route.params.id}`, {is_public})
-        clearInterval(this.interval)
-        this.touchLastSaved();
+        try {
+          await this.$axios.$patch(`/api/snippets/${this.$route.params.id}`, {is_public})
+          clearInterval(this.interval)
+          this.touchLastSaved();
+        } catch (e) {
+          this.$store.commit("alert/SHOW_ERROR", e.response.data.message);
+        }
       }, 1000)
     },
-    currentStep: {
-      deep: true,
-      handler: debounce(async function (step) {
-        let {title, body, id} = step
-        await this.$axios.$patch(`/api/snippets/${this.$route.params.id}/steps/${id}`, {title, body})
-        clearInterval(this.interval);
-        this.touchLastSaved()
-      }, 1000)
-    }
   },
   mixins: [browseSnippet],
   async asyncData(ctx) {
-    const snippet = await ctx.app.$axios.$get(`/api/snippets/${ctx.params.id}`)
+    try {
+      const snippet = await ctx.app.$axios.$get(`/api/snippets/${ctx.params.id}`)
+      if (!snippet.data.owner) {
+        ctx.store.commit("alert/SHOW_ERROR", "That's something you can't do that.")
 
-    return {
-      snippet: snippet.data,
-      steps: snippet.data.steps
+      }
+      return {
+        snippet: snippet.data,
+        steps: snippet.data.steps
+      }
+
+
+    } catch (e) {
+      ctx.store.commit("alert/SHOW_ERROR", e.response.data.message)
     }
   },
   beforeDestroy() {
@@ -169,6 +180,19 @@ export default Vue.extend({
       let previousStep = this.previousStep;
       this.steps = this.steps.filter(s => s.id !== step.id);
       await this.$router.push({query: {step: previousStep?.id || this.steps[0].id}});
+    },
+    stepWatcher() {
+      return debounce(async function (step) {
+        let {title, body, id} = step
+        try {
+          await this.$axios.$patch(`/api/snippets/${this.$route.params.id}/steps/${id}`, {title, body})
+          clearInterval(this.interval);
+          this.touchLastSaved()
+        } catch (e) {
+          this.$store.commit("alert/SHOW_ERROR", e.response.data.message);
+        }
+      }, 1000)
+
     }
   }
 

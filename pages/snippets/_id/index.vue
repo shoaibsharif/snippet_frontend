@@ -8,7 +8,7 @@
     </div>
 
     <div class="container ">
-      <h1 class="text-xl font-medium mb-6 text-gray-600 mb-6 m-3">{{ currentStepIndex + 1 }}/{{ steps.length }}.
+      <h1 class="text-xl font-medium mb-6 text-gray-600 m-3">{{ currentStepIndex + 1 }}/{{ steps.length }}.
         {{ currentStep.title }}</h1>
 
 
@@ -73,12 +73,19 @@ export default Vue.extend({
   },
   mixins: [browseSnippet],
   async asyncData(ctx) {
-    const snippet = await ctx.app.$axios.$get(`/api/snippets/${ctx.params.id}`)
-    console.log(ctx.params.id)
-    return {
-      snippet: snippet.data,
-      steps: snippet.data.steps
+    try {
+
+      const snippet = await ctx.app.$axios.$get(`/api/snippets/${ctx.params.id}`)
+      return {
+        snippet: snippet.data,
+        steps: snippet.data.steps
+      }
+    } catch (e) {
+      this.$store.commit("alert/SHOW_ERROR", e.response.data.message);
+      ctx.redirect("/")
     }
+
+
   }
 })
 </script>
