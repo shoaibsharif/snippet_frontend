@@ -86,9 +86,10 @@ export default Vue.extend({
   methods: {
     async register() {
       try {
-        await this.$axios.get('sanctum/csrf-cookie');
+
         await this.$axios.post('/api/auth/register', {...this.data})
-        await this.$auth.loginWith('laravelSanctum', {data: {email: this.data.email, password: this.data.password}})
+        await this.$router.push('/login')
+        this.$store.commit('alert/SHOW_SUCCESS', "Registered successfully. Please login")
       } catch (e) {
         this.errors = e.response.data.errors
       }

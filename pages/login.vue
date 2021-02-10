@@ -64,8 +64,8 @@ export default Vue.extend({
   data() {
     return {
       data: {
-        email: "shoaib@shoaib.com",
-        password: "shoaib123",
+        email: "",
+        password: "",
         remember: false
       },
       errors: {}
