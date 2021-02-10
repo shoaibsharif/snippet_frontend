@@ -60,6 +60,7 @@ export default {
     strategies: {
       laravelSanctum: {
         provider: "laravel/sanctum",
+        url: process.env.NUXT_ENV_API_URL,
         endpoints: {
           login: {
             url: "/api/auth/login"
