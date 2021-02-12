@@ -8,13 +8,14 @@ module.exports = {
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}"
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
 
     extend: {
       fontFamily: {
         header: ["Rubik", "sans-serif"],
-        fira: ["Fira Code", "monospace"]
+        fira: ["Fira Code", "monospace"],
+        sans: ["Nunito", "sans-serif"]
       },
       colors: {
         gray: colors.blueGray,
@@ -22,7 +23,8 @@ module.exports = {
       },
       container: {
         center: true,
-      }
+      },
+      boxShadow: ["dark"]
     }
   },
   variants: {

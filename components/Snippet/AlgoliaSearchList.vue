@@ -145,42 +145,51 @@ export default {
 
 }
 </script>
-<style>
+<style lang="scss">
 
 
-.ais-SearchBox-form {
-  @apply flex w-full;
-}
+.ais-SearchBox {
+  &-form {
+    @apply flex w-full;
+  }
 
-.ais-SearchBox-input {
-  @apply rounded-full border border-2 border-gray-300 font-sans px-3 py-2 focus:outline-none appearance-none w-full;
-}
+  &-input {
+    @apply rounded-full border border-2 border-gray-300 font-sans px-3 py-2 focus:outline-none appearance-none w-full;
+  }
 
-.ais-SearchBox-submit {
-  @apply hidden;
-}
+  &-submit {
+    @apply hidden;
+    svg {
+      @apply h-6 w-6;
+    }
+  }
 
-.ais-SearchBox-reset {
-  @apply hidden;
-}
-
-.ais-SearchBox-submit svg {
-  @apply h-6 w-6;
+  &-reset {
+    @apply hidden;
+  }
 }
 
 .ais-Pagination {
   @apply flex w-full mt-6;
+  &-list {
+    @apply flex mx-auto;
+  }
+
+  &-link {
+    @apply p-3;
+  }
+
+  &-item {
+    @apply rounded shadow-md m-3 h-10 w-10 flex items-center justify-center bg-gradient-to-t from-purple-100 to-gray-100 dark:from-gray-700 dark:to-gray-700 dark:text-white;
+    &--selected {
+      @apply bg-gradient-to-t from-purple-500 to-purple-700 dark:from-purple-500 dark:to-purple-700;
+      .ais-Pagination-link {
+        @apply text-white;
+      }
+    }
+
+  }
+
 }
 
-.ais-Pagination-list {
-  @apply flex mx-auto;
-}
-
-.ais-Pagination-item {
-  @apply rounded shadow-md m-3 h-10 w-10 flex items-center justify-center bg-gradient-to-t from-purple-100 to-gray-100;
-}
-
-.ais-Pagination-item--selected {
-  @apply bg-gradient-to-t from-purple-500 to-purple-700 text-white;
-}
 </style>
