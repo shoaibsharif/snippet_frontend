@@ -19,7 +19,24 @@
           <p class="ml-3">Remember me</p>
         </div>
 
-        <button class="form-button--submit">Login</button>
+        <button
+          class="form-button--submit inline-flex h-10 items-center"
+          :class="[$nuxt.$loading && $nuxt.$loading.$data && $nuxt.$loading.$data.show && 'loader-button']"
+          :disabled="$nuxt.$loading && $nuxt.$loading.$data && $nuxt.$loading.$data.show">
+          <transition name="animate-loader">
+
+            <svg
+              v-show="$nuxt.$loading && $nuxt.$loading.$data && $nuxt.$loading.$data.show"
+              class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </transition>
+
+          <span>login</span>
+        </button>
       </form>
     </div>
   </div>
@@ -47,8 +64,8 @@ export default Vue.extend({
   data() {
     return {
       data: {
-        email: "shoaib@shoaib.com",
-        password: "shoaib123",
+        email: "",
+        password: "",
         remember: false
       },
       errors: {}
@@ -57,6 +74,7 @@ export default Vue.extend({
   methods: {
     async login() {
       try {
+        this.$nuxt.$loading.start();
         await this.$auth.loginWith('laravelSanctum', {data: this.data})
         await this.$router.push('/');
         this.$store.commit('alert/SHOW_SUCCESS', "Successfully logged in")
@@ -71,3 +89,16 @@ export default Vue.extend({
 </script>
 
 
+<style lang="scss">
+.animate-loader {
+
+  &-enter, &-leave-active {
+    @apply transition-all duration-150;
+  }
+
+  &-enter, &-leave-to {
+    @apply opacity-0;
+  }
+}
+
+</style>

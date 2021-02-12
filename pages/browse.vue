@@ -7,7 +7,7 @@
     </div>
 
     <div class="container">
-      <h1 class="text-xl text-gray-600 font-medium mb-6">All snippet</h1>
+      <h1 class="text-xl text-gray-600 dark:text-white font-medium mb-6">All snippet</h1>
       <snippet-list :snippets="snippets"/>
     </div>
 

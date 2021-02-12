@@ -12,13 +12,13 @@
           <ul class="items-center w-full lg:w-auto lg:h-24 lg:flex">
             <li>
               <nuxt-link
-                class="text-lg text-gray-700 dark:text-white lg:px-4 lg:py-8"
+                class="navigation-link"
                 :to="{ name: 'browse' }"
               >Browse
               </nuxt-link>
             </li>
-            <li>
-              <nuxt-link class="text-lg text-gray-700 dark:text-white" to="search" exact
+            <li class="navigation-link">
+              <nuxt-link to="/search" exact
               >Search
               </nuxt-link
               >
@@ -28,7 +28,7 @@
           <ul class="items-center ml-auto text-right lg:h-24 lg:flex">
             <div class="flex items-center ml-auto">
               <button
-                class="mr-2 dark:text-gray-200 rounded-full bg-gray-400 h-10 w-10 flex items-center justify-center dark:bg-gray-800 p-2"
+                class="mr-2 dark:text-gray-200 focus:outline-none rounded-full bg-gray-400 dark:bg-gray-800 h-10 w-10 flex items-center justify-center  p-2"
                 @click.prevent="changeColorMode">
                 <transition name="colorMode">
                   <svg class=" h-5 w-5" v-if="$colorMode.value === 'dark'" xmlns="http://www.w3.org/2000/svg"
@@ -54,12 +54,12 @@
               >Open</a>
             </div>
             <template v-if="$auth.loggedIn">
-              <li class="text-lg text-gray-700 dark:text-white lg:px-4 lg:py-8">{{ $auth.user.name }}</li>
-              <li class="text-lg text-gray-700 dark:text-white lg:px-4 lg:py-8">
-                <nuxt-link to="/dashboard" exact>Dashboard</nuxt-link>
+              <li class="navigation-link">{{ $auth.user.name }}</li>
+              <li>
+                <nuxt-link class="navigation-link" to="/dashboard" exact>Dashboard</nuxt-link>
               </li>
 
-              <li class="text-lg text-gray-700 dark:text-white lg:px-4 lg:py-8 cursor-pointer" @click.prevent="logout">
+              <li class="navigation-link cursor-pointer" @click.prevent="logout">
                 Logout
               </li>
             </template>
@@ -67,8 +67,8 @@
               <li class="text-lg text-gray-700 dark:text-white lg:px-4 lg:py-8">
                 <nuxt-link :to="{name: 'login'}">Sign in</nuxt-link>
               </li>
-              <li class="text-lg text-gray-700 lg:px-4 lg:py-8 dark:text-white">
-                <nuxt-link :to="{name: 'register'}">Register</nuxt-link>
+              <li>
+                <nuxt-link class="navigation-link" :to="{name: 'register'}">Register</nuxt-link>
               </li>
             </template>
 
@@ -104,6 +104,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+.navigation-link {
+  @apply capitalize text-lg text-gray-700 dark:text-white lg:px-4 lg:py-8;
+}
+
 .colorMode {
   &-enter {
     @apply transform opacity-0 translate-y-3/4;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <nuxt-link :to="`/snippets/${snippet.id}`"
-               class="flex flex-wrap lg:flex-nowrap justify-between items-center bg-white rounded-lg p-8 w-full mb-2 cursor-pointer"
+               class="flex flex-wrap lg:flex-nowrap justify-between items-center shadow-md bg-white dark:bg-gray-700 rounded-lg p-8 w-full mb-2 cursor-pointer"
                v-for="snippet in snippets" :key="snippet.id">
       <div class="flex flex-col">
 
@@ -9,15 +9,20 @@
         <p class="text-gray-400">{{ snippet.author.name }}</p>
       </div>
       <div class="flex items-center">
-        <nuxt-link class="rounded p-1 text-blue-500 mr-2 lg:mr-0"
-                   :to="{name: 'snippets-id-edit', params: {id: snippet.id}}" v-if="snippet.owner">
+        <p class="mr-2" v-if="showPublic">{{ snippet.is_public ? "Public" : null }}</p>
+        <nuxt-link
+          class="p-2 text-blue-500 mr-2 lg:mr-0 hover:bg-gray-400 dark:hover:bg-gray-800 rounded-full transition ease-in-out duration-150"
+          :to="{name: 'snippets-id-edit', params: {id: snippet.id}}" v-if="snippet.owner">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
           </svg>
         </nuxt-link>
-        <a href="#" class="p-1" @click.prevent="deleteSnippet(snippet)" v-if="snippet.owner">
+        <a href="#"
+           class="p-2 hover:bg-gray-400 dark:hover:bg-gray-800 rounded-full transition ease-in-out duration-150"
+           @click.prevent="deleteSnippet(snippet)" v-if="snippet.owner">
+
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-6 w-6 text-red-500"
                viewBox="0 0 24 24"
                stroke="currentColor">
@@ -35,7 +40,8 @@ export default {
   props: {
     snippets: {
       required: true
-    }
+    },
+    showPublic: Boolean
   },
   methods: {
     async deleteSnippet(snippet) {

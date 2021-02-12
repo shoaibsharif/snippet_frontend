@@ -11,7 +11,7 @@ export default Vue.extend({
       title: 'Home'
     }
   },
-  
+
   data: () => ({
     world: "hello"
   })

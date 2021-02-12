@@ -20,7 +20,7 @@ p {
 }
 
 a {
-  @apply font-sans font-medium capitalize tracking-wide dark:text-white text-gray-800;
+  @apply font-sans font-medium tracking-wide dark:text-white text-gray-800;
 }
 
 .container {

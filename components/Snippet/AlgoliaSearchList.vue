@@ -2,13 +2,13 @@
   <ais-instant-search-ssr>
 
 
-    <div class="bg-white mb-16">
+    <div class="bg-white dark:bg-gray-900 mb-16">
       <div class="container py-10 pb-16">
-        <h1 class="text-4xl text-gray-700 font-medium leading-tight mb-4">Search</h1>
+        <h1 class="text-4xl text-gray-700 dark:text-gray-200 font-medium leading-tight mb-4">Search</h1>
         <ais-search-box autofocus :show-loading-indicator="true"/>
         <ais-configure :hits-per-page.camel="10"/>
         <div class="flex justify-between items-center mt-2 mx-3">
-          <ais-stats/>
+          <ais-stats class="dark:text-gray-200"/>
           <client-only>
             <ais-powered-by/>
           </client-only>
@@ -16,20 +16,19 @@
       </div>
     </div>
     <div class="container">
-      <h1 class="text-xl text-gray-600 font-medium mb-6">All snippet</h1>
+      <h1 class="text-xl text-gray-600 font-medium mb-6 dark:text-gray-200">All snippet</h1>
 
 
       <ais-hits>
         <template
           slot="item"
-          slot-scope="{ item }"
-        >
+          slot-scope="{ item }">
           <search-snippet-card :snippet="item"/>
         </template>
 
       </ais-hits>
 
-      <ais-pagination/>
+      <ais-pagination v-if="instantsearch && instantsearch.nbPages > 10"/>
     </div>
 
 
@@ -154,7 +153,7 @@ export default {
   }
 
   &-input {
-    @apply rounded-full border border-2 border-gray-300 font-sans px-3 py-2 focus:outline-none appearance-none w-full;
+    @apply transition duration-150 ease-in-out rounded-full focus:ring-2 focus:ring-indigo-300 focus:ring-opacity-50 bg-gray-200 dark:bg-gray-800 dark:text-gray-200 font-sans px-3 py-2 focus:outline-none appearance-none w-full;
   }
 
   &-submit {

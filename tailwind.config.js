@@ -12,6 +12,7 @@ module.exports = {
   theme: {
 
     extend: {
+      opacity: ['disabled'],
       fontFamily: {
         header: ["Rubik", "sans-serif"],
         fira: ["Fira Code", "monospace"],

@@ -1,4 +1,16 @@
 export default {
+  // Loading
+  loading: {
+    height: "5px",
+    color: "#ea580c",
+    continuous: true,
+    duration: 1000
+  },
+  loadingIndicator: {
+    name: 'cube-grid',
+    color: '#5b21b6',
+    background: '#c4b5fd'
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
