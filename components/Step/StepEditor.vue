@@ -37,6 +37,7 @@ export default {
     // require("codemirror/addon/hint/javascript-hint")
     const Codemirror = require('codemirror')
     this.codemirror = Codemirror.fromTextArea(document.getElementById('editor'), {
+      mode: "gfm",
       indentUnit: 2,
       indentWithTabs: false,
       lineNumbers: true,

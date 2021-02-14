@@ -12,11 +12,12 @@
             <p class="text-xl text-gray-600 mb-12">
               Snippets are small collections of steps for things you don't need to remember.
             </p>
-
-            <nuxt-link class="rounded bg-indigo-500 dark:bg-indigo-700 px-3 py-3 text-white"
-                       :to="{name: 'snippets-id', params: {id: '39ea641b-05ab-429e-bd6f-b4a41794aa56'}}">
-              Checkout out an example &rarr;
-            </nuxt-link>
+            <client-only>
+              <nuxt-link class="rounded bg-indigo-500 dark:bg-indigo-700 px-3 py-3 text-white"
+                         :to="{name: 'snippets-id', params: {id: exampleUrl}}">
+                Checkout out an example &rarr;
+              </nuxt-link>
+            </client-only>
           </div>
 
         </div>
@@ -41,7 +42,8 @@ export default Vue.extend({
   },
 
   data: () => ({
-    snippets: []
+    snippets: [],
+    exampleUrl: process.env.NUXT_ENV_EXAMPLE_SNIPPET_URL
   }),
 
   async asyncData(ctx: Context): Promise<void | object> {

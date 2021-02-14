@@ -100,8 +100,15 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     credentials: true,
-    baseURL: process.env.NUXT_ENV_API_URL
+    baseURL: process.env.NUXT_ENV_API_URL,
+    // proxy: true
   },
+  // proxy: {
+  //   '/laravel': {
+  //     target: process.env.NUXT_ENV_API_URL,
+  //     pathRewrite: {'^/laravel': '/'}
+  //   }
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -111,6 +118,9 @@ export default {
   privateRuntimeConfig: {
     AlgoliaAppId: process.env.ALGOLIA_APP_ID,
     AlgoliaSecretKey: process.env.ALGOLIA_API_KEY
+  },
+  env: {
+    exampleSnippetUrl: process.env.NUXT_ENV_EXAMPLE_SNIPPET_URL
   },
   router: {
     parseQuery(queryString) {
