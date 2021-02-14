@@ -13,7 +13,10 @@
                     label="Password"
                     :error="errors && errors.password"/>
         <p class="text-gray-400 text-xs italic mb-6">* Password must be at least 8 character.</p>
-        <nuxt-link to="/forgot-password" class="text-gray-400 text-md my-2 underline">Forgot password</nuxt-link>
+        <nuxt-link to="/forgot-password" exact class="text-gray-400 text-md my-2 underline">Forgot your password?
+        </nuxt-link>
+        <nuxt-link to="/register" exact class="text-gray-400 text-md my-2 underline">Don't have account?
+        </nuxt-link>
         <div class="flex items-center mb-4">
           <input type="checkbox" v-model="data.remember">
           <p class="ml-3">Remember me</p>
@@ -100,5 +103,6 @@ export default Vue.extend({
     @apply opacity-0;
   }
 }
+
 
 </style>

@@ -16,6 +16,11 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: "Reset Password"
+    }
+  },
   data() {
     return {
       data: {

@@ -25,7 +25,7 @@ module.exports = {
       container: {
         center: true,
       },
-      boxShadow: ["dark"]
+      boxShadow: ["dark"],
     }
   },
   variants: {

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="bg-white mb-16">
+    <div class="bg-white dark:bg-gray-900 mb-16">
       <div class="container py-10 pb-16">
-        <h1 class="text-4xl text-gray-700 font-medium leading-tight mb-4">Browse</h1>
+        <h1 class="text-4xl text-gray-700 dark:text-gray-400 font-medium leading-tight mb-4">Browse</h1>
       </div>
     </div>
 

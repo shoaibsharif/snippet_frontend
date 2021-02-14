@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="bg-white pb-6 mb-6">
-      <div class="container ">
-        <h1 class="text-4xl text-gray-700 font-medium leading-tight mb-4">{{ snippet.title }}</h1>
-        <div class="text-gray-600">@{{ snippet.author.name }}</div>
+    <div class="bg-white dark:bg-gray-900 pb-6 mb-6">
+      <div class="container">
+        <h1 class="text-4xl text-gray-700 dark:text-gray-400 font-medium leading-tight mb-4">{{ snippet.title }}</h1>
+        <div class="text-gray-600 dark:text-white">@{{ snippet.author.name }}</div>
       </div>
     </div>
 
@@ -21,8 +21,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
           </step-navigation-button>
-          <div class="p-8 rounded-lg text-gray-600 w-full bg-white m-3 lg:mt-0">
-            <step-markdown :value="currentStep.body"/>
+          <div class="p-8 rounded-lg shadow-md text-gray-600 w-full bg-white dark:bg-gray-700 m-3 lg:mt-0">
+            <step-markdown :step="currentStep"/>
           </div>
 
           <div class="flex flex-row-reverse lg:flex-col lg:mr-2 order-first lg:order-last">

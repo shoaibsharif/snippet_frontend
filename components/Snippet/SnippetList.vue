@@ -5,7 +5,7 @@
                v-for="snippet in snippets" :key="snippet.id">
       <div class="flex flex-col">
 
-        <h3 class="text-xl leading-snug"> {{ snippet.title || "Untitled Snippet" }}</h3>
+        <h3 class="text-xl dark:text-gray-400 leading-snug"> {{ snippet.title || "Untitled Snippet" }}</h3>
         <p class="text-gray-400">{{ snippet.author.name }}</p>
       </div>
       <div class="flex items-center">

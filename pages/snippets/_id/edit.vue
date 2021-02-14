@@ -3,10 +3,11 @@
     <div class="bg-white dark:bg-gray-900 pb-6 mb-6">
       <div class="container">
         <input type="text"
-               class="rounded border-2 dark:text-white p-2 font-sans w-full md:w-3/4 border-dashed dark:border-gray-300 dark:bg-gray-800 text-4xl font-header focus:outline-none"
+               class="rounded border-2 dark:text-white p-2 font-sans w-full md:w-3/4 border-dashed border-gray-600 dark:bg-gray-800 bg-gray-200 text-4xl font-header focus:outline-none"
                autofocus tabindex="1"
                placeholder="Untitled snippet" v-model.trim="snippet.title">
-        <div class="text-gray-600 dark:text-white">Created by <span class="text-green-400">{{ $auth.user.name }}</span>
+        <div class="text-gray-600 dark:text-white">Created by <span
+          class="text-green-500 dark:text-green-400">{{ $auth.user.name }}</span>
         </div>
       </div>
     </div>
@@ -17,7 +18,7 @@
         </div>
 
         <input type="text" tabindex="2"
-               class="text-xl dark:text-white font-fira bg-transparent rounded border-2 font-header border-dashed border-gray-400 px-2 py-1"
+               class="text-xl dark:text-white font-fira bg-transparent rounded border-2 font-header border-dashed border-gray-600 dark:bg-gray-800 bg-gray-200 px-2 py-1"
                placeholder="Untitled Step" v-model.trim="currentStep.title">
       </div>
 

@@ -14,15 +14,56 @@ const markdownIt = require('markdown-it')({
 })
 export default {
   props: {
-    value: {
+    step: {
       required: true
+    }
+  },
+  data() {
+    return {
+      codeMode: null
     }
   },
   computed: {
     markdown() {
-      return markdownIt.render(this.value)
+      let mode, wrapBody = this.step.body;
+      if (process.client == true) {
+        mode = this.detectMode(this.step.title)
+      }
+      if (mode) {
+        wrapBody = "```" + mode + "\n"
+          + this.step.body + "\n"
+          + "```"
+
+      }
+      return markdownIt.render(wrapBody)
     }
-  }
+  },
+
+  methods: {
+    detectMode(title) {
+      const CodeMirror = require('codemirror')
+      require("codemirror/mode/meta")
+      let val = title, m, mode, spec;
+      if (m = /.+\.([^.]+)$/.exec(val)) {
+        const info = CodeMirror.findModeByExtension(m[1]);
+        if (info) {
+          mode = info.mode;
+          spec = info.mime;
+        }
+      } else if (/\//.test(val)) {
+        const info = CodeMirror.findModeByMIME(val);
+        if (info) {
+          mode = info.mode;
+          spec = val;
+        }
+      } else {
+        mode = spec;
+      }
+      if (mode) {
+        return mode;
+      }
+    }
+  },
 }
 </script>
 

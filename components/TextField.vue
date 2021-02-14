@@ -3,11 +3,11 @@
     <label class="form-input--label" for="name">
       {{ label }}
     </label>
-    <input :value="value" v-on:input="$emit('input', $event.target.value)"
-           :class="{'border border-red-500' : error && error.length, }"
-           class="form-input--text text-opacity-25"
+    <input :value="value" @input="$emit('input', $event.target.value)"
+           :class="[ error && error.length && 'border border-red-500', additionalClasses]"
 
-           :name="name" :id="name" :type="type" :placeholder="placeholder" :disabled="disabled">
+           class="form-input--text text-opacity-25 disabled:text-opacity-75"
+           :name="name" :id="name" :type="type" :placeholder="placeholder" :disabled="disabled" v-bind="$attrs">
     <p class="form-input--error" v-if="error && error.length">
       {{ error && error.length && error.join(' ') }}</p>
   </div>
@@ -25,7 +25,8 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    }
+    },
+    additionalClasses: String
   }
 
 }

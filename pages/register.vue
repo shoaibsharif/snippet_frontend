@@ -20,7 +20,7 @@
                     :error="errors && errors.password_confirmation"/>
 
         <p class="text-gray-400 text-xs italic mb-6">* Password must be at least 8 character.</p>
-
+        <nuxt-link to="/login" exact class="text-gray-400 text-md my-2 underline">Already have account?</nuxt-link>
         <button
           class="form-button--submit inline-flex h-10 items-center"
           :class="[$nuxt.$loading && $nuxt.$loading.$data && $nuxt.$loading.$data.show && 'loader-button']"
