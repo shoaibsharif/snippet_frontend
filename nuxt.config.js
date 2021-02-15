@@ -75,13 +75,18 @@ export default {
   ],
 
   auth: {
+    cookie: {
+      options: {
+        sameSite: 'lax',
+      },
+    },
     strategies: {
       laravelSanctum: {
         provider: "laravel/sanctum",
         url: process.env.NUXT_ENV_API_URL,
         endpoints: {
           login: {
-            url: "/api/auth/login"
+            url: "/api/auth/login",
           },
           logout: {
             url: "/api/auth/logout",
@@ -101,14 +106,8 @@ export default {
   axios: {
     credentials: true,
     baseURL: process.env.NUXT_ENV_API_URL,
-    // proxy: true
   },
-  // proxy: {
-  //   '/laravel': {
-  //     target: process.env.NUXT_ENV_API_URL,
-  //     pathRewrite: {'^/laravel': '/'}
-  //   }
-  // },
+
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
