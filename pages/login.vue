@@ -67,7 +67,8 @@ export default Vue.extend({
     async login() {
       try {
         this.$nuxt.$loading.start();
-        await this.$auth.loginWith('laravelSanctum', {data: this.data})
+        const user = await this.$auth.loginWith('laravelSanctum', {data: this.data})
+        console.log(user)
         await this.$router.push('/');
         this.$store.commit('alert/SHOW_SUCCESS', "Successfully logged in")
       } catch (e) {
@@ -87,7 +88,6 @@ export default Vue.extend({
     } catch (e) {
       console.log(e)
     }
-
   }
 })
 </script>

@@ -44,12 +44,12 @@
         <div class="md:col-span-2">
           <form class="form">
             <text-field label="Current password" type="password" v-model="current_password" name="newPassword"
-                        :error="error && error.password"/>
+                        :error="errors && errors.password"/>
             <text-field label="New password" type="password" v-model="newPassword" name="newPassword"
-                        :error="error && error.password"/>
+                        :error="errors && errors.password"/>
 
             <text-field label="Confirm new password" type="password" v-model="password_confirmation"
-                        name="newPasswordConfirmation" :error="error && error.password_confirmation"/>
+                        name="newPasswordConfirmation" :error="errors && errors.password_confirmation"/>
             <button
               class="form-button">
               save

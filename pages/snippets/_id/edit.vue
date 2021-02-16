@@ -5,8 +5,10 @@
         <input type="text"
                class="rounded border-2 dark:text-white p-2 font-sans w-full md:w-3/4 border-dashed border-gray-600 dark:bg-gray-800 bg-gray-200 text-4xl font-header focus:outline-none"
                autofocus tabindex="1"
+               :class="[error && error.title && 'border-red-500']"
                placeholder="Untitled snippet" v-model.trim="snippet.title">
-        <div class="text-gray-600 dark:text-white">Created by <span
+        <p class="form-input--error font-medium" v-if="error && error.title">{{ error && error.title }}</p>
+        <div class="text-gray-600 dark:text-white mt-2">Created by <span
           class="text-green-500 dark:text-green-400">{{ $auth.user.name }}</span>
         </div>
       </div>
@@ -109,7 +111,8 @@ export default Vue.extend({
       snippet: null,
       steps: [],
       lastSaved: null,
-      interval: null
+      interval: null,
+      error: null
     }
   },
   beforeMount() {
@@ -123,8 +126,15 @@ export default Vue.extend({
   watch: {
     'snippet.title': {
       handler: debounce(async function (title) {
+        if (!title) {
+          this.error = {
+            title: 'Please enter a title'
+          }
+          return;
+        } else {
+          this.error = null;
+        }
         try {
-
           await this.$axios.$patch(`/api/snippets/${this.$route.params.id}`, {title})
           clearInterval(this.interval)
           this.touchLastSaved();

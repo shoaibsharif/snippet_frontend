@@ -81,7 +81,7 @@ export default Vue.extend({
         steps: snippet.data.steps
       }
     } catch (e) {
-      this.$store.commit("alert/SHOW_ERROR", e.response.data.message);
+      ctx.store.commit("alert/SHOW_ERROR", e.response.data.message)
       ctx.redirect("/")
     }
 

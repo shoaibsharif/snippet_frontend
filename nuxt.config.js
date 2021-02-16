@@ -106,6 +106,14 @@ export default {
   axios: {
     credentials: true,
     baseURL: process.env.NUXT_ENV_API_URL,
+    headers: {
+      common: {
+        'Accept': 'application/json'
+      },
+      post: {
+        'Accept': 'application/json'
+      }
+    }
   },
 
 

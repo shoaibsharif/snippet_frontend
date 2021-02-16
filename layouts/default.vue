@@ -112,7 +112,8 @@ export default Vue.extend({
       this.dropdownNav = false
     },
     dropdownTR(e: any) {
-      if (e.originalTarget.localName === 'a') {
+
+      if (e.target?.className.includes('nav-dropdown--link')) {
         this.dropdownNav = false;
       }
     }
