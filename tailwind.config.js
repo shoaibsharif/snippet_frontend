@@ -20,7 +20,8 @@ module.exports = {
       },
       colors: {
         gray: colors.blueGray,
-        orange: colors.orange
+        orange: colors.orange,
+        amber: colors.amber
       },
       container: {
         center: true,

@@ -46,7 +46,7 @@
               </transition>
             </button>
             <template v-if="$auth.loggedIn">
-              <div class="relative" @close.stop="closeDropdown" v-clickaway="closeDropdown">
+              <div class="relative" v-clickaway="closeDropdown">
                 <a href="#" class="navigation-link"
                    @click.prevent="dropdownNav = !dropdownNav">{{ $auth.user.name }}</a>
                 <transition name="nav">
@@ -112,10 +112,7 @@ export default Vue.extend({
       this.dropdownNav = false
     },
     dropdownTR(e: any) {
-
-      if (e.target?.className.includes('nav-dropdown--link')) {
-        this.dropdownNav = false;
-      }
+      this.dropdownNav = false
     }
   },
 
