@@ -59,6 +59,7 @@
 <script>
 import Vue from "vue";
 import browseSnippet from "~/mixins/snippets/browseSnippet";
+import pagetransition from "@/mixins/pagetransition";
 
 export default Vue.extend({
 
@@ -71,7 +72,7 @@ export default Vue.extend({
       steps: []
     }
   },
-  mixins: [browseSnippet],
+  mixins: [browseSnippet, pagetransition],
   async asyncData(ctx) {
     try {
 

@@ -96,6 +96,7 @@ import debounce from 'lodash.debounce'
 import Vue from "vue";
 import browseSnippet from "~/mixins/snippets/browseSnippet";
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import pagetransition from "@/mixins/pagetransition";
 
 export default Vue.extend({
 
@@ -154,7 +155,7 @@ export default Vue.extend({
       }, 1000)
     },
   },
-  mixins: [browseSnippet],
+  mixins: [browseSnippet, pagetransition],
   async asyncData(ctx) {
     try {
       const snippet = await ctx.app.$axios.$get(`/api/snippets/${ctx.params.id}`)

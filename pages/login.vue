@@ -38,6 +38,7 @@
 
 
 import Vue from "vue";
+import pagetransition from "~/mixins/pagetransition";
 
 export default Vue.extend({
 
@@ -48,6 +49,7 @@ export default Vue.extend({
   },
   middleware: ['auth'],
   auth: 'guest',
+  mixins: [pagetransition],
   mounted() {
     if (this.$route.query?.verified === '1') {
       this.$store.commit('alert/SHOW_SUCCESS', "Email verified. Please login.")

@@ -5,6 +5,7 @@ export default {
   transition: {
     css: false,
     enter(el, done) {
+      el.style.willChange = 'all';
       anime({
         targets: el,
         translateX: [-250, 0],
@@ -17,6 +18,7 @@ export default {
         targets: el,
         translateX: 250,
         opacity: [1, 0],
+        duration: 150,
         complete: done
       })
     }

@@ -1,5 +1,9 @@
 # snippet_frontend
 
+Browse and create mini step-by-step tutorial
+
+[snippet.shoaibsharif.dev](https://snippet.shoaibsharif.dev)
+
 ## Build Setup
 
 ```bash
@@ -17,4 +21,4 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
