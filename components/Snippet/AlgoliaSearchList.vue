@@ -19,16 +19,24 @@
       <h1 class="text-xl text-gray-600 font-medium mb-6 dark:text-gray-200">All snippet</h1>
 
 
+      <!--      <ais-hits>-->
+      <!--        <template-->
+      <!--          slot="item"-->
+      <!--          slot-scope="{ item }">-->
+      <!--          <search-snippet-card :snippet="item"/>-->
+      <!--        </template>-->
+      <!--      </ais-hits>-->
       <ais-hits>
-        <template
-          slot="item"
-          slot-scope="{ item }">
-          <search-snippet-card :snippet="item"/>
-        </template>
-
+        <transition-group name="stagger" v-on:enter="enter" v-on:leave="leave"
+                          :css="false"
+                          tag="ul"
+                          slot-scope="{items}">
+          <li class="mb-2" v-for="(item, index) in items" :key="item.objectID" v-bind:data-index="index">
+            <search-snippet-card :snippet="item"/>
+          </li>
+        </transition-group>
       </ais-hits>
-
-      <ais-pagination v-if="instantsearch && instantsearch.nbPages > 10"/>
+      <ais-pagination/>
     </div>
 
 
@@ -51,6 +59,7 @@ import {
   createServerRootMixin,
 } from 'vue-instantsearch';
 import algoliasearch from "algoliasearch/lite";
+import anime from 'animejs/lib/anime.es'
 
 function nuxtRouter(vueRouter) {
   return {
@@ -111,10 +120,6 @@ export default {
       $_ais_ssrInstantSearchInstance: this.instantsearch,
     };
   },
-  async middleware(ctx) {
-    const data = await ctx.$axios.$get('/api/keys/algolia')
-    console.log(data.data.data)
-  },
   components: {
     AisInstantSearchSsr,
     AisIndex,
@@ -140,6 +145,33 @@ export default {
       ...mixin.data(),
     };
 
+  },
+  methods: {
+    enter(el, done) {
+      let delay = el.dataset.index * 150;
+      let height = el.getBoundingClientRect().height
+      anime({
+        targets: el,
+        translateX: [-400, 0],
+        height: [0, height],
+        opacity: [0, 1],
+        complete: done,
+        delay,
+        easing: 'easeInOutQuad'
+      })
+    },
+    leave(el, done) {
+      let delay = el.dataset.index * 100;
+      anime({
+        targets: el,
+        translateX: 270,
+        opacity: [1, 0],
+        height: 0,
+        complete: done,
+        delay,
+        easing: 'easeInOutQuad'
+      })
+    }
   },
 
 }
