@@ -33,6 +33,7 @@
 <script lang="ts">
 import {Context} from "@nuxt/types/app";
 import Vue from "vue";
+import pagetransition from "~/mixins/pagetransition";
 
 export default Vue.extend({
   head() {
@@ -45,7 +46,7 @@ export default Vue.extend({
     snippets: [],
     exampleUrl: process.env.NUXT_ENV_EXAMPLE_SNIPPET_URL
   }),
-
+  mixins: [pagetransition],
   async asyncData(ctx: Context): Promise<void | object> {
     const snippets = await ctx.app.$axios.$get('/api/snippets?limit=10')
     return {

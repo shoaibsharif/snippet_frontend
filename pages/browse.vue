@@ -16,6 +16,8 @@
 
 
 <script>
+import pagetransition from "@/mixins/pagetransition";
+
 export default {
   head() {
     return {
@@ -27,6 +29,7 @@ export default {
       snippets: []
     }
   },
+  mixins: [pagetransition],
   async asyncData(ctx) {
     const snippets = await ctx.app.$axios.$get('/api/snippets')
 
