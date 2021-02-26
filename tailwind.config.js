@@ -12,6 +12,18 @@ module.exports = {
   theme: {
 
     extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: '#ddd'
+          }
+        },
+        dark: {
+          css: {
+            color: '#fff'
+          }
+        }
+      }),
       opacity: ['disabled'],
       fontFamily: {
         header: ["Rubik", "sans-serif"],
@@ -30,7 +42,7 @@ module.exports = {
     }
   },
   variants: {
-    extend: {}
+    typography: ['dark']
   },
   plugins: [
     require('@tailwindcss/typography'),

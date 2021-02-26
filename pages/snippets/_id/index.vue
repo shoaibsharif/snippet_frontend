@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <div class="bg-white dark:bg-gray-900 pb-6 mb-6">
+  <div class="min-h-screen">
+    <div class="bg-white dark:bg-gray-900 py-6 mb-10">
       <div class="container">
         <h1 class="text-4xl text-gray-700 dark:text-gray-400 font-medium leading-tight mb-4">{{ snippet.title }}</h1>
         <div class="text-gray-600 dark:text-white">@{{ snippet.author.name }}</div>
       </div>
     </div>
 
-    <div class="container ">
+    <div class="container lg:my-24">
       <h1 class="text-xl font-medium mb-6 text-gray-600 m-3">{{ currentStepIndex + 1 }}/{{ steps.length }}.
         {{ currentStep.title }}</h1>
 
@@ -43,7 +43,7 @@
             </nuxt-link>
           </div>
         </div>
-        <div class="w-full lg:w-4/12">
+        <div class="w-full lg:w-3/12">
 
           <div class="mb-8">
             <h1 class="text-xl text-gray-600 font-medium mb-6"> Steps</h1>

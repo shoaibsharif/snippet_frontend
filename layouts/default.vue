@@ -76,6 +76,14 @@
     </nav>
 
     <Nuxt/>
+
+    <footer class="mt-24 mb-5 container flex justify-center items-center">
+
+      <p>
+        &copy; Shoaib Sharif {{ new Date().getFullYear() }}
+      </p>
+
+    </footer>
   </div>
 </template>
 

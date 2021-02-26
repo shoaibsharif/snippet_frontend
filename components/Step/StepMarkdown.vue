@@ -1,15 +1,16 @@
 <template>
-  <div v-html="markdown" class="prose lg:prose-xl"></div>
+  <div v-html="markdown" className="prose-sm dark:prose-dark dark:text-white"></div>
 </template>
 
 <script>
 const hljs = require('highlight.js')
+const vueHighlight = require('vue-highlight.js/lib/languages/vue')
+hljs.registerLanguage('vue', vueHighlight);
 const markdownIt = require('markdown-it')({
   highlight(str, lang) {
 
-
     if (lang && hljs.getLanguage(lang)) return `<pre class="hljs language-${lang.toLowerCase()}"><code>${hljs.highlightAuto(str).value}</code></pre>`
-    return `<pre class="hljs"><code>${str}</code></pre>`
+    return `<pre class="hljs language-text"><code>${markdownIt.renderInline(str)}</code></pre>`
   }
 })
 export default {
@@ -33,7 +34,6 @@ export default {
         wrapBody = "```" + mode + "\n"
           + this.step.body + "\n"
           + "```"
-
       }
       return markdownIt.render(wrapBody)
     }

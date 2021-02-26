@@ -3,6 +3,7 @@ import {
   AisHighlight,
   AisHits,
   AisIndex,
+  AisInfiniteHits,
   AisInstantSearchSsr,
   AisPagination,
   AisPoweredBy,
@@ -81,7 +82,8 @@ export default {
     AisSearchBox,
     AisStats,
     AisPagination,
-    AisPoweredBy
+    AisPoweredBy,
+    AisInfiniteHits
   },
   data() {
     let mixin = createServerRootMixin({

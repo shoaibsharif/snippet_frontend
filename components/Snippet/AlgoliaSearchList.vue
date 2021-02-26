@@ -1,7 +1,5 @@
 <template>
   <ais-instant-search-ssr>
-
-
     <div class="bg-white dark:bg-gray-900 mb-16">
       <div class="container py-10 pb-16">
         <h1 class="text-4xl text-gray-700 dark:text-gray-200 font-medium leading-tight mb-4">Search</h1>
@@ -26,20 +24,27 @@
       <!--          <search-snippet-card :snippet="item"/>-->
       <!--        </template>-->
       <!--      </ais-hits>-->
-      <ais-hits>
-        <transition-group name="stagger" v-on:enter="enter" v-on:leave="leave"
-                          :css="false"
-                          tag="ul"
-                          slot-scope="{items}">
-          <li class="mb-2" v-for="(item, index) in items" :key="item.objectID" v-bind:data-index="index">
-            <search-snippet-card :snippet="item"/>
-          </li>
-        </transition-group>
-      </ais-hits>
-      <ais-pagination/>
+      <ais-infinite-hits>
+        <template slot-scope="{items, refineNext, isLastPage}">
+
+          <transition-group name="stagger" v-on:enter="enter" v-on:leave="leave"
+                            :css="false"
+                            tag="ul"
+          >
+            <li class="mb-2" v-for="(item, index) in items" :key="item.objectID" v-bind:data-index="index">
+              <search-snippet-card :snippet="item"/>
+            </li>
+          </transition-group>
+          <div class="flex items-center justify-center">
+
+            <button v-if="!isLastPage" class="my-5 rounded px-3 py-2 bg-purple-500 text-white" @click="refineNext">Show
+              more
+            </button>
+          </div>
+        </template>
+      </ais-infinite-hits>
+      <!--      <ais-pagination/>-->
     </div>
-
-
   </ais-instant-search-ssr>
 </template>
 
@@ -55,7 +60,7 @@ export default {
   methods: {
 
     enter(el, done) {
-      let delay = el.dataset.index * 150;
+      // let delay = el.dataset.index * 150;
       let height = el.getBoundingClientRect().height
       anime({
         targets: el,
@@ -63,19 +68,19 @@ export default {
         height: [0, height],
         opacity: [0, 1],
         complete: done,
-        delay,
+        delay: anime.stagger(100),
         easing: 'easeInOutQuad'
       })
     },
     leave(el, done) {
-      let delay = el.dataset.index * 100;
+      // let delay = el.dataset.index * 100;
       anime({
         targets: el,
         translateX: 270,
         opacity: [1, 0],
         height: 0,
         complete: done,
-        delay,
+        delay: anime.stagger(100),
         easing: 'easeInOutQuad'
       })
     }
