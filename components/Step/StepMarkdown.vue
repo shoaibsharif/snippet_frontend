@@ -1,5 +1,5 @@
 <template>
-  <div v-html="markdown" class="prose-sm dark:prose-dark dark:text-white"></div>
+  <div v-html="markdown" class="prose dark:text-white"></div>
 </template>
 
 <script>
@@ -34,6 +34,10 @@ export default {
       if (mode) {
 
         wrapBody = "```" + mode + "\n"
+          + this.step.body + "\n"
+          + "```"
+      } else if (this.step.title.includes('.')) {
+        wrapBody = "```" + "\n"
           + this.step.body + "\n"
           + "```"
       }

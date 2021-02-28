@@ -12,18 +12,13 @@ module.exports = {
   theme: {
 
     extend: {
-      typography: (theme) => ({
-        DEFAULT: {
-          css: {
-            color: '#ddd'
-          }
-        },
-        dark: {
-          css: {
-            color: '#fff'
-          }
-        }
-      }),
+      // typography: (theme) => ({
+      //   dark: {
+      //     css: {
+      //       color: '#fff'
+      //     }
+      //   }
+      // }),
       opacity: ['disabled'],
       fontFamily: {
         header: ["Rubik", "sans-serif"],
