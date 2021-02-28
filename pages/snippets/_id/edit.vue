@@ -55,7 +55,7 @@
                              class="mx-2 lg:mx-0"/>
 
             <a href="#" @click.prevent="deleteStep(currentStep)" v-if="steps.length > 1" title="delete step"
-               class="bg-red-300 rounded p-3 mt-2">
+               class="bg-red-300 rounded p-3 lg:mt-2">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-6 w-6 text-red-500"
                    viewBox="0 0 24 24"
                    stroke="currentColor">
