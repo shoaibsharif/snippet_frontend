@@ -1,5 +1,5 @@
 <template>
-  <div v-html="markdown" className="prose-sm dark:prose-dark dark:text-white"></div>
+  <div v-html="markdown" class="prose-sm dark:prose-dark dark:text-white"></div>
 </template>
 
 <script>
@@ -29,8 +29,10 @@ export default {
       let mode, wrapBody = this.step.body;
       if (process.client == true) {
         mode = this.detectMode(this.step.title)
+
       }
       if (mode) {
+
         wrapBody = "```" + mode + "\n"
           + this.step.body + "\n"
           + "```"
@@ -43,6 +45,7 @@ export default {
     detectMode(title) {
       const CodeMirror = require('codemirror')
       require("codemirror/mode/meta")
+
       let val = title, m, mode, spec;
       if (m = /.+\.([^.]+)$/.exec(val)) {
         const info = CodeMirror.findModeByExtension(m[1]);
@@ -59,9 +62,16 @@ export default {
       } else {
         mode = spec;
       }
-      if (mode) {
+      if (mode && mode !== 'null') {
         return mode;
       }
+      const arr = title.split('.')
+      if (arr[arr.length - 1] && hljs.getLanguage(arr[arr.length - 1])) {
+        console.log(arr[arr.length - 1])
+        return arr[arr.length - 1]
+
+      }
+
     }
   },
 }
@@ -72,6 +82,6 @@ export default {
 </style>
 <style>
 .hljs {
-  @apply rounded;
+  @apply rounded font-fira;
 }
 </style>

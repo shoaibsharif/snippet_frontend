@@ -63,6 +63,8 @@ export default {
     changeMode() {
       const CodeMirror = require('codemirror')
       require("codemirror/mode/meta")
+      require('codemirror/addon/mode/simple')
+      // require('codemirror/mode/')
       let val = this.step.title, m, mode, spec;
       if (m = /.+\.([^.]+)$/.exec(val)) {
         const info = CodeMirror.findModeByExtension(m[1]);
@@ -79,10 +81,10 @@ export default {
       } else {
         mode = spec;
       }
-      if (mode) {
+      if (mode && mode != "null") {
         this.codemirror.setOption("mode", spec);
         require(`codemirror/mode/${mode}/${mode}`)
-        // console.log(mode)
+        console.log({mode, spec})
       } else {
         require(`codemirror/mode/gfm/gfm`)
       }

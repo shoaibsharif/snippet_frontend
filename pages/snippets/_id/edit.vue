@@ -26,7 +26,7 @@
 
 
       <div class="flex flex-wrap lg:flex-nowrap">
-        <div class="w-full lg:w-8/12 mb-6 lg:mb-0 lg:mr-16 flex flex-wrap lg:flex-nowrap justify-between items-start">
+        <div class="w-full lg:w-8/12 lg:mr-16 flex flex-wrap lg:flex-nowrap justify-between items-start">
           <div class="order-first flex flex-row lg:flex-col mr-2">
 
             <step-navigation-button :step="previousStep">
@@ -35,7 +35,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
               </svg>
             </step-navigation-button>
-            <add-step-button :snippet="snippet" :currentStep="currentStep" @added="handleAdded" position="before"/>
+            <add-step-button :snippet="snippet" :currentStep="currentStep" class="ml-2 lg:ml-0" @added="handleAdded"
+                             position="before"/>
           </div>
 
 
@@ -50,10 +51,11 @@
             </step-navigation-button>
 
 
-            <add-step-button position="after" :snippet="snippet" :currentStep="currentStep" @added="handleAdded"/>
+            <add-step-button position="after" :snippet="snippet" :currentStep="currentStep" @added="handleAdded"
+                             class="mx-2 lg:mx-0"/>
 
             <a href="#" @click.prevent="deleteStep(currentStep)" v-if="steps.length > 1" title="delete step"
-               class="bg-red-300 rounded p-3 mb-2">
+               class="bg-red-300 rounded p-3 mt-2">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-6 w-6 text-red-500"
                    viewBox="0 0 24 24"
                    stroke="currentColor">
