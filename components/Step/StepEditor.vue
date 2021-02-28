@@ -100,6 +100,6 @@ export default {
 }
 
 .cm-s-solarized.CodeMirror {
-  @apply shadow-none;
+  @apply shadow-none h-auto;
 }
 </style>
