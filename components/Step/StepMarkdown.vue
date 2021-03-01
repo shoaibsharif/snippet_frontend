@@ -1,5 +1,5 @@
 <template>
-  <div v-html="markdown" class="prose dark:text-white"></div>
+  <div v-html="markdown" class="prose max-w-none dark:text-white"></div>
 </template>
 
 <script>

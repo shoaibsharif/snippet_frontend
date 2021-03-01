@@ -12,9 +12,9 @@
         {{ currentStep.title }}</h1>
 
 
-      <div class="flex flex-wrap xl:flex-nowrap">
+      <div class="grid grid-cols-12 gap-2">
         <div
-          class="w-full xl:w-8/12 mb-6 lg:mb-0 lg:mr-16 flex flex-row-reverse lg:flex-row flex-wrap lg:flex-nowrap justify-between items-start">
+          class="lg:col-span-8 col-span-12 mb-6 lg:mb-0 lg:mr-16 flex flex-row-reverse lg:flex-row flex-wrap lg:flex-nowrap justify-between items-start">
           <step-navigation-button :step="previousStep">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor">
@@ -44,7 +44,8 @@
 
           </div>
         </div>
-        <div class="w-full xl:w-3/12">
+        <div class="col-span-1"></div>
+        <div class="col-span-3">
           <div class="mb-8">
             <h1 class="text-xl text-gray-600 font-medium mb-6"> Steps</h1>
             <step-list :steps="steps" :currentStep="currentStep"/>
