@@ -1,5 +1,5 @@
 <template>
-  <div v-html="markdown" class="prose max-w-none dark:text-white"></div>
+  <div v-html="markdown" class="prose dark:prose-dark max-w-none dark:text-white"></div>
 </template>
 
 <script>
@@ -31,8 +31,11 @@ export default {
         mode = this.detectMode(this.step.title)
 
       }
-      if (mode) {
 
+      if (mode === 'markdown') {
+        return markdownIt.render(wrapBody);
+      }
+      if (mode) {
         wrapBody = "```" + mode + "\n"
           + this.step.body + "\n"
           + "```"

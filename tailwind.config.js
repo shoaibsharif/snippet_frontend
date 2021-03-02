@@ -1,5 +1,10 @@
 const colors = require('tailwindcss/colors')
-
+const round = (num) =>
+  num
+    .toFixed(7)
+    .replace(/(\.[0-9]+?)0+$/, '$1')
+    .replace(/\.0$/, '')
+const em = (px, base) => `${round(px / base)}em`
 module.exports = {
   purge: [
     "./components/**/*.{vue,js}",
@@ -12,13 +17,26 @@ module.exports = {
   theme: {
 
     extend: {
-      // typography: (theme) => ({
-      //   dark: {
-      //     css: {
-      //       color: '#fff'
-      //     }
-      //   }
-      // }),
+      typography: (theme) => ({
+        dark: {
+          css: {
+            color: '#fff',
+            h1: {
+              color: theme('colors.gray.200'),
+              fontSize: em(30, 14),
+            }, h2: {
+              color: theme('colors.gray.200'),
+              fontSize: em(20, 14),
+            }, h3: {
+              color: theme('colors.gray.200'),
+              fontSize: em(18, 14),
+            }, h4: {
+              color: theme('colors.gray.200'),
+              fontSize: em(20, 14),
+            },
+          }
+        }
+      }),
       opacity: ['disabled'],
       fontFamily: {
         header: ["Rubik", "sans-serif"],
@@ -37,7 +55,9 @@ module.exports = {
     }
   },
   variants: {
-    typography: ['dark']
+    extend: {
+      typography: ['dark']
+    }
   },
   plugins: [
     require('@tailwindcss/typography'),
