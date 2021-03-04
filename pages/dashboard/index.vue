@@ -2,7 +2,7 @@
   <div class="container mt-16">
     <div class="flex justify-between mb-4">
       <h1 class="text-xl text-gray-600 font-medium mb-6">Your snippet ({{ snippets.length }})</h1>
-      <button @click="createSnippet" class="rounded text-gray-900 px-3 py-4 bg-indigo-500 dark:bg-indigo-700 ">+ Create
+      <button @click="createSnippet" class="rounded text-gray-200 px-3 py-4 bg-indigo-500 dark:bg-indigo-700 ">+ Create
         a snippet
       </button>
     </div>

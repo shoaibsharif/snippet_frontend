@@ -53,6 +53,7 @@
                   <div v-if="dropdownNav" @click.capture="dropdownTR"
                        class="absolute z-50 mt-2 w-40 pb-1 border dark:border-gray-600 border-gray-200 rounded-md bg-white dark:bg-gray-600 shadow-lg origin-top-right right-0 top-10">
                     <div class="block px-4 py-2 text-xs text-gray-400">Manage Account</div>
+                    <a href="#" class="nav-dropdown--link" @click.prevent="createSnippet">Create a snippet</a>
                     <nuxt-link :to="{name: 'user-profile'}"
                                class="nav-dropdown--link">
                       Profile
@@ -108,6 +109,10 @@ export default Vue.extend({
     };
   },
   methods: {
+    async createSnippet() {
+      const snippet = await this.$axios.$post('/api/snippets')
+      await this.$router.push(`/snippets/${snippet.id}/edit`)
+    },
     async logout() {
       this.dropdownNav = false;
       await this.$auth.logout();
