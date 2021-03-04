@@ -10,7 +10,6 @@
 <script>
 export default {
   props: {
-
     step: {
       type: Object | null
     }

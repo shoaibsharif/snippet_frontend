@@ -25,36 +25,46 @@
       </div>
     </div>
     <div class="container">
-      <snippet-list :snippets="snippets"/>
+      <snippet-list :snippets="snippets" @onVisible="visibilityChanged"/>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import {Context} from "@nuxt/types/app";
-import Vue from "vue";
+<script>
 import pagetransition from "~/mixins/pagetransition";
 
-export default Vue.extend({
+export default {
   head() {
     return {
       title: 'Home'
     }
   },
 
-  data: () => ({
-    snippets: [],
-    exampleUrl: process.env.NUXT_ENV_EXAMPLE_SNIPPET_URL
-  }),
-  mixins: [pagetransition],
-  async asyncData(ctx: Context): Promise<void | object> {
-    const snippets = await ctx.app.$axios.$get('/api/snippets?limit=10')
+  data() {
     return {
-      // @ts-ignore
-      snippets: snippets?.data
+      snippets: [],
+      exampleUrl: process.env.NUXT_ENV_EXAMPLE_SNIPPET_URL,
+      nextPage: null
+    }
+  },
+  methods: {
+    async visibilityChanged() {
+      if (this.nextPage) {
+        const snippets = await this.$axios.$get(this.nextPage);
+        this.snippets.push(...snippets.data);
+        this.nextPage = snippets?.links?.next;
+      }
+    }
+  },
+  mixins: [pagetransition],
+  async asyncData(ctx) {
+    const snippets = await ctx.app.$axios.$get('/api/snippets')
+    return {
+      snippets: snippets?.data,
+      nextPage: snippets?.links?.next
     }
   }
 
-});
+};
 </script>
 

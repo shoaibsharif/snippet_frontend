@@ -27,7 +27,8 @@
     "npm": "^6.14.11",
     "nuxt": "^2.14.12",
     "vue-highlight.js": "^4.0.0-beta",
-    "vue-instantsearch": "^3.4.3"
+    "vue-instantsearch": "^3.4.3",
+    "vue-observe-visibility": "^1.0.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.12",

@@ -72,10 +72,9 @@ export default {
       if (mode && mode !== 'null') {
         return mode;
       }
-      const arr = title.split('.')
-      if (arr[arr.length - 1] && hljs.getLanguage(arr[arr.length - 1])) {
-        console.log(arr[arr.length - 1])
-        return arr[arr.length - 1]
+      const getExtensionFromTitle = title.split('.')
+      if (getExtensionFromTitle[getExtensionFromTitle.length - 1] && hljs.getLanguage(getExtensionFromTitle[getExtensionFromTitle.length - 1])) {
+        return getExtensionFromTitle[getExtensionFromTitle.length - 1]
 
       }
 

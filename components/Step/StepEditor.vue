@@ -84,7 +84,6 @@ export default {
       if (mode && mode != "null") {
         this.codemirror.setOption("mode", spec);
         require(`codemirror/mode/${mode}/${mode}`)
-        console.log({mode, spec})
       } else {
         require(`codemirror/mode/gfm/gfm`)
       }

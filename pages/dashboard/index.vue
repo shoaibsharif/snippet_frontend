@@ -6,15 +6,13 @@
         a snippet
       </button>
     </div>
-    <snippet-list :snippets="snippets" showPublic/>
+    <snippet-list :snippets="snippets" showPublic @onVisible="visibilityChanged"/>
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-import {Context} from "@nuxt/types";
+<script>
 
-export default Vue.extend({
+export default {
   head() {
     return {
       title: "Dashboard"
@@ -22,21 +20,30 @@ export default Vue.extend({
   },
   data() {
     return {
-      snippets: []
+      snippets: [],
+      nextPage: null
     }
   },
-  async asyncData(ctx: Context) {
+  async asyncData(ctx) {
     const snippets = await ctx.$axios.$get("/api/me/snippets")
     return {
-      snippets: snippets.data
+      snippets: snippets.data,
+      nextPage: snippets?.links?.next
     }
   },
   methods: {
+    async visibilityChanged() {
+      if (this.nextPage) {
+        const snippets = await this.$axios.$get(this.nextPage);
+        this.snippets.push(...snippets.data);
+        this.nextPage = snippets?.links?.next;
+      }
+    },
     async createSnippet() {
       const snippet = await this.$axios.$post('/api/snippets')
       await this.$router.push(`/snippets/${snippet.id}/edit`)
     },
 
   }
-})
+}
 </script>
