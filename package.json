@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^2.0.1",
-    "@nuxtjs/auth-next": "5.0.0-1611415963.92eabbd",
+    "@nuxt/typescript-runtime": "^2.1.0",
+    "@nuxtjs/auth-next": "^5.0.0-1611415963.92eabbd",
     "@nuxtjs/axios": "^5.12.5",
     "@tailwindcss/typography": "^0.4.0",
     "algoliasearch": "^4.8.4",
@@ -25,14 +25,13 @@
     "lodash.orderby": "^4.6.0",
     "markdown-it": "^12.0.4",
     "npm": "^6.14.11",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.15.2",
     "vue-highlight.js": "^4.0.0-beta",
     "vue-instantsearch": "^3.4.3",
     "vue-observe-visibility": "^1.0.0"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.14.12",
-    "@nuxt/typescript-build": "^2.0.4",
+    "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/color-mode": "^2.0.2",
     "@nuxtjs/tailwindcss": "^3.4.2",
     "@tailwindcss/postcss7-compat": "^2.0.2",

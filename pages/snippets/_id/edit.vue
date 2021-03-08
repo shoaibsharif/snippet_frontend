@@ -35,7 +35,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
               </svg>
             </step-navigation-button>
-            <add-step-button :snippet="snippet" :currentStep="currentStep" class="ml-2 lg:ml-0" @added="handleAdded"
+            <step-add-button :snippet="snippet" :currentStep="currentStep" class="ml-2 lg:ml-0" @added="handleAdded"
                              position="before"/>
           </div>
 
@@ -51,7 +51,7 @@
             </step-navigation-button>
 
 
-            <add-step-button position="after" :snippet="snippet" :currentStep="currentStep" @added="handleAdded"
+            <step-add-button position="after" :snippet="snippet" :currentStep="currentStep" @added="handleAdded"
                              class="mx-2 lg:mx-0"/>
 
             <a href="#" @click.prevent="deleteStep(currentStep)" v-if="steps.length > 1" title="delete step"

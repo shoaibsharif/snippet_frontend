@@ -32,7 +32,7 @@
                             tag="ul"
           >
             <li class="mb-2" v-for="(item, index) in items" :key="item.objectID" v-bind:data-index="index">
-              <search-snippet-card :snippet="item"/>
+              <snippet-search-card :snippet="item"/>
             </li>
           </transition-group>
           <div class="flex items-center justify-center">

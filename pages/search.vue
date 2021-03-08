@@ -1,5 +1,5 @@
 <template>
-  <algolia-search-list/>
+  <snippet-algolia-search-list/>
 </template>
 
 <script>
