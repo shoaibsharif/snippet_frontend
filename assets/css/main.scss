@@ -1,4 +1,3 @@
-
 .form {
   @apply bg-white dark:bg-gray-900 shadow-md w-full md:w-3/4 rounded mx-auto px-8 pt-6 pb-8 mb-4 flex flex-col my-2;
   &-input {
@@ -18,7 +17,7 @@
 
   &-button {
     &--submit {
-      @apply rounded text-white uppercase tracking-widest text-xs bg-indigo-500 dark:bg-indigo-700 px-3 py-3 max-w-md mx-auto text-black font-sans;
+      @apply rounded text-white uppercase tracking-widest text-xs bg-indigo-500 dark:bg-indigo-700 px-3 py-3 max-w-md mx-auto font-sans;
     }
   }
 }

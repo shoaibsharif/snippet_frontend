@@ -122,8 +122,10 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ["vue-instantsearch", "instantsearch.js/es"]
-  }
-  ,
+  },
+  tailwindcss: {
+    jit: true,
+  },
   privateRuntimeConfig: {
     AlgoliaAppId: process.env.ALGOLIA_APP_ID,
     AlgoliaSecretKey: process.env.ALGOLIA_API_KEY
