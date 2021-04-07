@@ -99,6 +99,7 @@ import Vue from "vue";
 import browseSnippet from "~/mixins/snippets/browseSnippet";
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import pagetransition from "@/mixins/pagetransition";
+import Modal from '@/components/Modal.vue'
 
 export default Vue.extend({
 
@@ -191,11 +192,27 @@ export default Vue.extend({
       await this.$router.push({query: {step: step.id}})
     },
     async deleteStep(step) {
+      let result = await this.openModal()
+      if (!result) {
+        return;
+      }
       await this.$axios.$delete(`/api/snippets/${this.snippet.id}/steps/${this.currentStep.id}`)
 
       let previousStep = this.previousStep;
       this.steps = this.steps.filter(s => s.id !== step.id);
       await this.$router.push({query: {step: previousStep?.id || this.steps[0].id}});
+    },
+    openModal() {
+      return new Promise((resolve, reject) => {
+        let mboxInstance = Vue.extend(Modal)
+        let oComponent = new mboxInstance().$mount()
+        document.getElementById('__nuxt').appendChild(oComponent.$el);
+        oComponent.$data.openModal = true
+        oComponent.$on('confirm', result => {
+          return resolve(result)
+        })
+
+      })
     },
     stepWatcher() {
       return debounce(async function (step) {
