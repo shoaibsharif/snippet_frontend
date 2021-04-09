@@ -11,7 +11,7 @@ Browse and create mini step-by-step tutorial
 - change editor mode based on extension (i.e. `*.js`, `*.ts`, `*.vue`)
 - change highlight mode based on extension
 - Search Animation using [`anime.js`](https://animejs.com/)
-- Customized TailwindCSS Modal using Promise
+- Customized TailwindCSS Confirmation Popup using Promise
 - TailwindCSS dark Mode 🌓
 
 ## Build Setup
