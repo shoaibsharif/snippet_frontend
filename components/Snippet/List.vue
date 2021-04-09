@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import modal from "@/mixins/modal";
+
 export default {
   props: {
     snippets: {
@@ -47,12 +49,16 @@ export default {
     },
     showPublic: Boolean
   },
+  mixins: [modal],
   methods: {
     visibilityChanged(isVisible) {
       if (!isVisible) return
       this.$emit('onVisible', "just updated")
     },
+
     async deleteSnippet(snippet) {
+      const confirm = await this.openModal()
+      if (!confirm) return
       await this.$axios.$delete(`/api/snippets/${snippet.id}`);
       this.snippets = this.snippets.filter(s => s.id !== snippet.id);
     }

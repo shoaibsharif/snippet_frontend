@@ -99,7 +99,7 @@ import Vue from "vue";
 import browseSnippet from "~/mixins/snippets/browseSnippet";
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import pagetransition from "@/mixins/pagetransition";
-import Modal from '@/components/Modal.vue'
+import modal from "@/mixins/modal";
 
 export default Vue.extend({
 
@@ -158,7 +158,7 @@ export default Vue.extend({
       }, 1000)
     },
   },
-  mixins: [browseSnippet, pagetransition],
+  mixins: [browseSnippet, pagetransition, modal],
   async asyncData(ctx) {
     try {
       const snippet = await ctx.app.$axios.$get(`/api/snippets/${ctx.params.id}`)
@@ -202,18 +202,7 @@ export default Vue.extend({
       this.steps = this.steps.filter(s => s.id !== step.id);
       await this.$router.push({query: {step: previousStep?.id || this.steps[0].id}});
     },
-    openModal() {
-      return new Promise((resolve, reject) => {
-        let mboxInstance = Vue.extend(Modal)
-        let oComponent = new mboxInstance().$mount()
-        document.getElementById('__nuxt').appendChild(oComponent.$el);
-        oComponent.$data.openModal = true
-        oComponent.$on('confirm', result => {
-          return resolve(result)
-        })
 
-      })
-    },
     stepWatcher() {
       return debounce(async function (step) {
         let {title, body, id} = step
