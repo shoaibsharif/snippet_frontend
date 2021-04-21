@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex h-full flex-col">
     <alert/>
     <nav class="flex items-center px-4 py-8 bg-white dark:bg-gray-900 lg:py-0">
 
@@ -75,8 +75,9 @@
       </div>
 
     </nav>
-
-    <Nuxt/>
+    <div class="h-full">
+      <Nuxt/>
+    </div>
 
     <footer class="mt-24 mb-5 container flex justify-center items-center">
 
@@ -133,6 +134,30 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+html, body, #__nuxt, #__layout {
+  height: 100%;
+  --tw-bg-opacity: 1;
+  scrollbar-color: rgba(51, 65, 85, var(--tw-bg-opacity)) transparent;
+  scrollbar-width: thin;
+}
+
+@media (orientation: landscape) {
+  ::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar {
+    @apply w-[5px] h-[11px] bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-700 border-2 border-gray-800 rounded;
+  }
+}
+
+//::selection {
+//  @apply bg-gray-600;
+//}
+
 .navigation-link {
   @apply capitalize text-lg text-gray-700 dark:text-white lg:px-4 lg:py-8;
 }

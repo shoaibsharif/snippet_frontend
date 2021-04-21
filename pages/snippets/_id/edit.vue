@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen">
+  <div>
     <div class="bg-white dark:bg-gray-900 pb-6 mb-6">
       <div class="container">
         <input type="text"
