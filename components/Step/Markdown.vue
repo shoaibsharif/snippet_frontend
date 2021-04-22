@@ -3,6 +3,9 @@
 </template>
 
 <script>
+import Vue from "vue";
+import AppCopyButton from "@/components/CopyButton";
+
 const hljs = require('highlight.js')
 const vueHighlight = require('vue-highlight.js/lib/languages/vue')
 hljs.registerLanguage('vue', vueHighlight);
@@ -13,6 +16,7 @@ const markdownIt = require('markdown-it')({
     return `<pre class="hljs language-text"><code>${markdownIt.renderInline(str)}</code></pre>`
   }
 })
+
 export default {
   props: {
     step: {
@@ -23,6 +27,16 @@ export default {
     return {
       codeMode: null
     }
+  },
+  mounted() {
+    setTimeout(function () {
+      const blocks = document.querySelectorAll("pre.hljs")
+      for (const block of blocks) {
+        const CopyButton = Vue.extend(AppCopyButton)
+        const component = new CopyButton().$mount()
+        block.appendChild(component.$el);
+      }
+    }, 250)
   },
   computed: {
     markdown() {
@@ -86,8 +100,22 @@ export default {
 <style src="highlight.js/styles/paraiso-dark.css">
 
 </style>
-<style>
+<style lang="scss">
 .hljs {
-  @apply rounded font-fira;
+  @apply rounded font-fira transition-all duration-300 relative;
+  &:hover {
+    button.copyclipboard {
+      @apply opacity-100 visible;
+    }
+  }
+
+  button.copyclipboard {
+    @apply absolute bottom-1 right-2 invisible opacity-10 transition-opacity duration-300;
+    svg {
+      @apply bg-gray-600 rounded p-1;
+    }
+
+  }
+
 }
 </style>
