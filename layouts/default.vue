@@ -75,10 +75,7 @@
       </div>
 
     </nav>
-    <div class="h-full">
-      <Nuxt/>
-    </div>
-
+    <Nuxt/>
     <footer class="mt-24 mb-5 container flex justify-center items-center">
 
       <p>
