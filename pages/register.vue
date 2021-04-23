@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-16 mx-8 md:mx-auto">
+  <div class="container mt-16 mx-8 md:mx-auto">
     <div class="flex flex-col items-center max-w-2xl mx-auto">
       <h1 class="text-3xl text-gray-700 dark:text-gray-200 font-medium mb-10">
         Register

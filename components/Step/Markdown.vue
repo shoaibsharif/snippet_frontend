@@ -29,6 +29,7 @@ export default {
     }
   },
   mounted() {
+    // Add copy button component in each pre element
     setTimeout(function () {
       const blocks = document.querySelectorAll("pre.hljs")
       for (const block of blocks) {
