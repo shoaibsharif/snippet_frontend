@@ -4,8 +4,11 @@
     <nav class="flex items-center px-4 py-8 bg-white dark:bg-gray-900 lg:py-0">
 
       <div class="flex justify-between w-full container items-center">
-        <nuxt-link class="mr-10 dark:text-white" :to="{ name: 'index' }">
-          Home
+        <nuxt-link class=" dark:text-white" :to="{ name: 'index' }">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
         </nuxt-link>
         <ul class="items-center lg:w-auto lg:h-24 flex">
           <li class="mr-2">
@@ -15,16 +18,19 @@
             >Browse
             </nuxt-link>
           </li>
-          <li class="navigation-link">
-            <nuxt-link to="/search" exact
-            >Search
-            </nuxt-link
-            >
-          </li>
         </ul>
 
         <div class="items-center ml-auto lg:h-24 flex">
           <div class="flex items-center ml-auto">
+            <nuxt-link class="mr-5 navigation-link" to="/search" exact
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                   stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </nuxt-link
+            >
             <button
               class="mr-2 dark:text-gray-200 focus:outline-none rounded-full bg-gray-400 dark:bg-gray-800 h-10 w-10 flex items-center justify-center  p-2"
               @click.prevent="changeColorMode">
@@ -59,7 +65,7 @@
                       Profile
                     </nuxt-link>
                     <nuxt-link class="nav-dropdown--link" to="/dashboard" exact>
-                      Dashboard
+                      My Snippets
                     </nuxt-link>
                     <a href="#" class="nav-dropdown--link" @click.prevent="logout">Logout</a>
                   </div>
@@ -156,7 +162,7 @@ html, body, #__nuxt, #__layout {
 //}
 
 .navigation-link {
-  @apply capitalize text-lg text-gray-700 dark:text-white lg:px-4 lg:py-8;
+  @apply capitalize text-lg text-gray-700 dark:text-white ml-5;
 }
 
 .nav-dropdown {
