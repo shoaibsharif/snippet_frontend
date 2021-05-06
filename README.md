@@ -1,4 +1,4 @@
-# snippet_frontend
+# Snippet
 
 Browse and create mini step-by-step tutorial
 
@@ -13,6 +13,8 @@ Browse and create mini step-by-step tutorial
 - Search Animation using [`anime.js`](https://animejs.com/)
 - Customized TailwindCSS Confirmation Popup using Promise
 - TailwindCSS dark Mode 🌓
+
+I have chosen backend as Laravel. You can [check it out](https://github.com/shoaibsharif/snippet_api)
 
 ## Build Setup
 
