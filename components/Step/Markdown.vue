@@ -29,20 +29,25 @@ export default {
     }
   },
   mounted() {
-    // Add copy button component in each pre element
-    setTimeout(function () {
-      const blocks = document.querySelectorAll("pre.hljs")
-      for (const block of blocks) {
-        const CopyButton = Vue.extend(AppCopyButton)
-        const component = new CopyButton().$mount()
-        block.appendChild(component.$el);
-      }
-    }, 250)
+    const blocks = document.querySelectorAll("pre.hljs")
+    for (const block of blocks) {
+      const CopyButton = Vue.extend(AppCopyButton)
+      const component = new CopyButton().$mount()
+      block.appendChild(component.$el);
+    }
+  },
+  updated() {
+    const blocks = document.querySelectorAll("pre.hljs")
+    for (const block of blocks) {
+      const CopyButton = Vue.extend(AppCopyButton)
+      const component = new CopyButton().$mount()
+      block.appendChild(component.$el);
+    }
   },
   computed: {
     markdown() {
       let mode, wrapBody = this.step.body;
-      if (process.client == true) {
+      if (process.client === true) {
         mode = this.detectMode(this.step.title)
 
       }

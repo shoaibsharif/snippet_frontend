@@ -46,7 +46,8 @@ module.exports = {
       colors: {
         gray: colors.blueGray,
         orange: colors.orange,
-        amber: colors.amber
+        amber: colors.amber,
+        violate: colors.violet
       },
       container: {
         center: true,

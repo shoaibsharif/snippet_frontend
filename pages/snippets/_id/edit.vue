@@ -65,10 +65,14 @@
             </a>
           </div>
         </div>
-        <div class="w-full lg:w-4/12">
+        <div class="w-full lg:w-4/12 mt-4 lg:mt-0">
 
           <div class="mb-8">
-            <h1 class="text-xl text-gray-600 font-medium mb-6"> Steps</h1>
+            <nuxt-link :to="{name: 'snippets-id', params: {id: snippet.id}, query: {step: currentStep.id}}"
+                       class="bg-violate-600 text-white text-base font-semibold px-6 py-2 rounded-lg">
+              View this snippet
+            </nuxt-link>
+            <h1 class="text-xl text-gray-600 font-medium my-6"> Steps</h1>
             <step-list :steps="orderedStepAsc" :currentStep="currentStep"/>
             <div class="border-t-2 border-gray-300 py-6 mt-6">
               <div class="text-gray-500 text-sm mb-6">
