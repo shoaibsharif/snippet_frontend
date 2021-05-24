@@ -76,7 +76,9 @@ export default {
     "@nuxtjs/auth-next",
     'vue-plausible'
   ],
-
+  plausible: {
+    apiHost: "https://analytics.graphland.dev",
+  },
   auth: {
     cookie: {
       options: {
