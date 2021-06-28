@@ -91,7 +91,6 @@ export default {
     sendConfirm(value) {
       this.openModal = false
       this.$emit('confirm', value)
-
     }
   }
 }
