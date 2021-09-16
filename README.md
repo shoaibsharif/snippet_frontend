@@ -14,7 +14,7 @@ Browse and create mini step-by-step tutorial
 - Customized TailwindCSS Confirmation Popup using Promise
 - TailwindCSS dark Mode 🌓
 
-I have chosen backend as Laravel. You can [check it out](https://github.com/shoaibsharif/snippet_api)
+I have chosen Laravel as backend. You can [check it out](https://github.com/shoaibsharif/snippet_api)
 
 ## Build Setup
 
